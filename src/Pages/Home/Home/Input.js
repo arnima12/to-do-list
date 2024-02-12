@@ -14,7 +14,7 @@ const Input = () => {
             <div className="flex justify-center flex-row">
                 <ul>
                     {listItems.map((item) => (
-                        <List key={item.id} title={item.title} item={item}></List>
+                        <List key={item.id} title={item.title} item={item} ></List>
 
                     ))}
                 </ul>
