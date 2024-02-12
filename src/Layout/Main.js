@@ -5,8 +5,8 @@ import Navbar from '../Pages/Home/Navbar/Navbar';
 const Main = () => {
     return (
         <div>
-            <Outlet/>
             <Navbar/>
+            <Outlet/>
         </div>
     );
 };
