@@ -42,25 +42,11 @@ Clean and Intuitive Interface:
 
 ## LIVE SITE
 
-
-
-
 ## Installation
-Clone the Repository:
 
-Bash
+Install my-project with npm
 
-git clone https://github.com/your-username/todo-list.git
-
-
-Install Dependencies:
-
-Bash
-
-npm install
-
-Start the Development Server:
-
-Bash
-
-npm start
+```bash
+  npm install my-project
+  cd my-project
+```
