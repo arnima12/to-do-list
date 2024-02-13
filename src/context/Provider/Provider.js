@@ -7,6 +7,7 @@ const [idCounter, setIdCounter] = useState(0);
 const [completedItems, setCompletedItems] = useState([]);
 const [count,setCount] = useState(0);
 const [completeCount,setCompleteCount] = useState(0);
+const [searchTerm, setSearchTerm] = useState('');
 useEffect(() => {
     const storedListItems = localStorage.getItem('listItem');
     const storedIdCounter = localStorage.getItem('idCounter');
@@ -80,18 +81,24 @@ setCompleteCount(completeCount + 1)
 localStorage.setItem('completedItems', JSON.stringify(updatedCompletedItems));
 localStorage.setItem('completeCount', JSON.stringify(completeCount + 1));
 };
-
+const handleSearchChange = (value) => {
+    setSearchTerm(value);
+  };
+  const filteredListItems = listItems.filter((item) =>
+  item.title.toLowerCase().includes(searchTerm.toLowerCase())
+);
 const authInfo = {
     inputValue,
     handleInputChange,
     handleButtonClick,
-    listItems,
+    filteredListItems,
     handleEditChange,
     handleDelete,
     handleComplete,
     completedItems,
     count,
-    completeCount
+    completeCount,
+    handleSearchChange
     
 }
     return (
