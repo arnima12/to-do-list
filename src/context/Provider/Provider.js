@@ -6,18 +6,22 @@ const [listItems,setListItems] = useState([]);
 const [idCounter, setIdCounter] = useState(0);
 const [completedItems, setCompletedItems] = useState([]);
 const [count,setCount] = useState(0);
+const [completeCount,setCompleteCount] = useState(0);
 useEffect(() => {
     const storedListItems = localStorage.getItem('listItem');
     const storedIdCounter = localStorage.getItem('idCounter');
     const storedCompletedItems = localStorage.getItem('completedItems');
     const storedCount =  localStorage.getItem('count');
+    const storedCompleteCount =  localStorage.getItem('completeCount');
     const parsedListItems = storedListItems ? JSON.parse(storedListItems) : [];
     const parsedIdCounter = storedIdCounter ? parseInt(storedIdCounter) : 0;
     const parsedCompletedItems = storedCompletedItems ? JSON.parse(storedCompletedItems) : [];
     const parsedCount = storedCount? JSON.parse(storedCount) : 0;
+    const parsedCompleteCount = storedCompleteCount? JSON.parse(storedCompleteCount) : 0;
     setListItems(parsedListItems);
     setIdCounter(parsedIdCounter);
     setCount(parsedCount);
+    setCompleteCount(parsedCompleteCount);
     setCompletedItems(parsedCompletedItems)
   }, []);
 const handleInputChange = (e) =>{
@@ -61,7 +65,9 @@ const handleDelete = (id) =>{
     setListItems(filteredList);
     localStorage.setItem('listItem', JSON.stringify(filteredList))
     localStorage.setItem('count', JSON.stringify(count - 1));
+    localStorage.setItem('completeCount', JSON.stringify(completeCount - 1));
     setCount(count - 1);
+    setCompleteCount(completeCount - 1)
     
 }
 const handleComplete = (id) => {
@@ -70,8 +76,9 @@ const handleComplete = (id) => {
         ? completedItems.filter((itemId) => itemId !== id)
         : [...completedItems, id]; 
 setCompletedItems(updatedCompletedItems);
-
+setCompleteCount(completeCount + 1)
 localStorage.setItem('completedItems', JSON.stringify(updatedCompletedItems));
+localStorage.setItem('completeCount', JSON.stringify(completeCount + 1));
 };
 
 const authInfo = {
@@ -83,7 +90,8 @@ const authInfo = {
     handleDelete,
     handleComplete,
     completedItems,
-    count
+    count,
+    completeCount
     
 }
     return (
